@@ -12,6 +12,7 @@ import com.indooratlas.android.sdk.IALocationManager;
 
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class NavigationActivity extends AppCompatActivity implements Observer {
     private NavigationManager _nvm;
@@ -35,7 +36,10 @@ public class NavigationActivity extends AppCompatActivity implements Observer {
         _nvm.addObserver(_vbm);
         _nvm.addObserver(this);
 
-        _vbm.vibrateMessage(VibrateMessage.Right);
+        ConcurrentLinkedQueue<LatLng> testpath = new ConcurrentLinkedQueue<LatLng>();
+        testpath.offer(new LatLng(51.917437458857066, 4.484745936568862));
+        testpath.offer(new LatLng(51.91739853185142, 4.48457666843423));
+        _nvm.setPath(testpath);
     }
 
     @Override
