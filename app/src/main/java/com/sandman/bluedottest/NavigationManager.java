@@ -35,7 +35,7 @@ public class NavigationManager extends Observable implements IALocationListener,
 
     private ConcurrentLinkedQueue<LatLng> _path = new ConcurrentLinkedQueue<LatLng>();
     private LatLng _nextWaypoint;
-    private LatLng _lastLocation;
+    public static LatLng _lastLocation;
     private boolean _navigating = false;
     private List<PointOfInterest> _pointsOfInterest = new ArrayList<PointOfInterest>();
 
@@ -180,6 +180,10 @@ public class NavigationManager extends Observable implements IALocationListener,
                 )
         );
         return vicinity.contains(waypoint);
+    }
+
+    public static LatLng get_lastLocation() {
+        return _lastLocation;
     }
 
     /**
